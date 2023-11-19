@@ -1,9 +1,5 @@
-// import 'package:flutter/services.dart';
-// import 'package:frontside/domain/entities/response_from_api.dart';
-
 import 'package:app_movil/-core/datasources/sqlite.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../-core/params/login_params.dart';
 import '../models/validate_user_model.dart';
 

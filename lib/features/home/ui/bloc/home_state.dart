@@ -20,5 +20,7 @@ class HomeLoadingProducts extends HomeState {}
 class HomeLoadedProducts extends HomeState {
   final List<Producto> listProductos;
   final String client;
-  HomeLoadedProducts({required this.listProductos,required this.client});
+  HomeLoadedProducts({required this.listProductos, required this.client});
 }
+
+class OrderSaved extends HomeState {}

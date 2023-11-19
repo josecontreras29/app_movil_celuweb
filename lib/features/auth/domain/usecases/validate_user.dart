@@ -1,6 +1,5 @@
 import '../../../../-core/params/login_params.dart';
 import '../../../../../-core/usecases/usecase.dart';
-
 import '../entities/validate_user_auth.dart';
 import '../repositories/login_repository.dart';
 

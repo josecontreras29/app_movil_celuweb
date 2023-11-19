@@ -34,12 +34,12 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<AuthBloc>(
               create: (context) => sl()..add(InitialEventAuth())),
-          BlocProvider<HomeBloc>(
-              create: (context) => sl()..add(GetInitialDataEvent()))
+          BlocProvider<HomeBloc>(create: (context) => sl()..add(InitEvent()))
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
+            initialRoute: "/",
             theme: theme(),
             home: const AuthenticationView()));
   }

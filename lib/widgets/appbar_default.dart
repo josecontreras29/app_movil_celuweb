@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../features/auth/ui/views/authentication_view.dart';
+import '../injection_container.dart';
 
 class AppBarDefault extends StatelessWidget {
   const AppBarDefault({super.key, required this.username});
@@ -22,10 +23,16 @@ class AppBarDefault extends StatelessWidget {
                       const PopupMenuItem(
                           value: '/Profile', child: Text("Profile")),
                       PopupMenuItem(
-                          onTap: () => Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const AuthenticationView())),
+                          onTap: () {
+                            sl<SharedPreferences>().remove("username");
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AuthenticationView()));
+                          },
                           value: '/Logout',
                           child: const Text("Logout"))
                     ];

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../widgets/ok_button_dialog.dart';
+import '../../../home/ui/bloc/bloc.dart';
 import '../../../home/ui/views/home_view.dart';
 
 import '../bloc/bloc.dart';
@@ -39,11 +40,11 @@ class _AuthenticationViewState extends State<AuthenticationView> {
                     return await okButton(context, "Incorrect credentials");
                   }
                   if (state is AuthPassed) {
+                    context.read<HomeBloc>().add(GetInitialDataEvent());
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                HomePage(username: state.username)));
+                            builder: (context) => const HomePage()));
                   }
                 }, builder: (context, state) {
                   if (state is LoginInitial) {

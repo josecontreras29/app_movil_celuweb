@@ -1,6 +1,5 @@
 import '../../../../-core/params/registration_params.dart';
 import '../../../../-core/usecases/usecase.dart';
-
 import '../entities/registration_status.dart';
 import '../repositories/registration_repository.dart';
 

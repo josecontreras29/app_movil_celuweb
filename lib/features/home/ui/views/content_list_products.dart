@@ -2,8 +2,11 @@ import 'package:app_movil/-core/params/home_params.dart';
 import 'package:app_movil/widgets/ok_button_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../-config/themes/title_themes.dart';
+import '../../../../injection_container.dart';
+import '../../domain/entities/pedido.dart';
 import '../bloc/bloc.dart';
 import '../reusable_widgets/cell_table_products.dart';
 import '../reusable_widgets/checkbutton_table_products.dart';
@@ -13,6 +16,7 @@ class ContentListProducts extends StatelessWidget {
   ContentListProducts({super.key});
   final ScrollController controller = ScrollController();
   final List<ProductInfoForOrder> listValuesSelected = [];
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
@@ -39,6 +43,7 @@ class ContentListProducts extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
                     child: Container(
+                      margin: const EdgeInsets.only(bottom: 10),
                       constraints: const BoxConstraints(maxWidth: 3100),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +59,7 @@ class ContentListProducts extends StatelessWidget {
                             TitleTableProducts(width: 80, value: "Marca"),
                             TitleTableProducts(width: 100, value: "Categoria"),
                             TitleTableProducts(width: 100, value: "Agrupacion"),
-                            TitleTableProducts(width: 80, value: "Vendedor"),
+                            TitleTableProducts(width: 100, value: "Vendedor"),
                             TitleTableProducts(width: 80, value: "Marcadd"),
                             TitleTableProducts(
                                 width: 120, value: "Lineaproduccion"),
@@ -151,7 +156,7 @@ class ContentListProducts extends StatelessWidget {
                                           value: state
                                               .listProductos[index].agrupacion),
                                       CellTableProducts(
-                                          width: 80,
+                                          width: 100,
                                           value: state
                                               .listProductos[index].vendedor),
                                       CellTableProducts(
@@ -259,15 +264,14 @@ class ContentListProducts extends StatelessWidget {
                           okButton(
                               context, "Please select at least one product");
                         } else {
-                          OrderDetail order = OrderDetail(
-                              fechaPedido: DateTime.now(),
-                              cliente: state.client,
-                              listaProductos: listValuesSelected);
-                          print([
-                            order.cliente,
-                            order.fechaPedido,
-                            order.listaProductos
-                          ]);
+                          final prefs = sl<SharedPreferences>();
+                          context.read<HomeBloc>().add(SaveOrderEvent(
+                              pedido: Pedido(
+                                  usuario: prefs.getString("username")!,
+                                  fechaPedido:
+                                      DateTime.now().toString().split(".")[0],
+                                  cliente: state.client,
+                                  listaProductos: listValuesSelected)));
                         }
                       },
                       child: const Text("Guardar pedido")),

@@ -1,13 +1,4 @@
-class OrderDetail {
-  final DateTime fechaPedido;
-  final String cliente;
-  final List<ProductInfoForOrder> listaProductos;
 
-  OrderDetail(
-      {required this.fechaPedido,
-      required this.cliente,
-      required this.listaProductos});
-}
 
 class ProductInfoForOrder {
   final String codigo;
@@ -22,4 +13,12 @@ class ProductInfoForOrder {
       required this.precio,
       required this.peso,
       required this.bodega});
+}
+
+class SaveOrderResult {
+  final bool result;
+
+  SaveOrderResult({required this.result});
+
+ 
 }

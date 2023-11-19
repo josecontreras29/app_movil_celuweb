@@ -22,6 +22,9 @@ class RegistrationDataSourceImpl implements RegistrationDataSource {
         "password": registration.password,
         "empresa": registration.empresa
       });
+      await db.insert('Vendedor', {
+        "codigo": registration.usuario,
+      });
       await Future.delayed(const Duration(milliseconds: 500));
       return RegistrationModel.fromJson({"created": true});
     } catch (error) {

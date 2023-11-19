@@ -1,4 +1,3 @@
-
 import '../../../../-core/params/registration_params.dart';
 
 class AuthEvent {
@@ -10,7 +9,6 @@ class InitialEventAuth extends AuthEvent {}
 class SignIn extends AuthEvent {
   final String user;
   final String password;
-
   SignIn({required this.user, required this.password});
 }
 
@@ -21,10 +19,5 @@ class SignUp extends AuthEvent {
   SignUp({required this.registrationData});
 }
 
- 
-
 class ForgottenPaswordEvent extends AuthEvent {}
 
-class SendRecoveryEmail extends AuthEvent {
-  SendRecoveryEmail();
-}

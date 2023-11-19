@@ -28,9 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final RegistrationUser _registrationUser;
   final VerifyUser _verifyuser;
 
-  void initialEvent(InitialEventAuth event, Emitter<AuthState> emit) {
-    emit(LoginInitial());
-  }
+  void initialEvent(InitialEventAuth event, Emitter<AuthState> emit) {}
 
   void registerEvent(RegisterEvent event, Emitter<AuthState> emit) {
     emit(RegisterInitial());

@@ -11,7 +11,7 @@ class ClientSQLite {
   }
 
   initDataBase() async {
-    String path = join(await getDatabasesPath(), "DataBase.db");
+    String path = join(await getDatabasesPath(), "DataBase_CeluWeb.db");
 
     bool exists = await databaseExists(path);
     if (!exists) {
@@ -33,7 +33,7 @@ class ClientSQLite {
       path,
       onCreate: (db, version) {
         db.execute(
-            'CREATE TABLE Pedidos(cliente TEXT, fechaPedido DATE, listaProductos TEXT)');
+            'CREATE TABLE Pedidos(idPedido INTEGER PRIMARY KEY,usuario TEXT,cliente TEXT, fechaPedido TEXT, listaProductos TEXT)');
       },
     );
   }

@@ -2,13 +2,16 @@ import 'package:app_movil/features/home/infraestructure/models/get_producto_mode
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../-core/datasources/sqlite.dart';
+import '../../domain/entities/pedido.dart';
 import '../models/get_cliente_model.dart';
 import '../models/get_vendedor_model.dart';
+import '../models/save_order_model.dart';
 
 abstract class HomeDataSource {
   Future<GetVendedorModel> getVendedor();
   Future<List<GetClienteModel>> getClientes();
   Future<List<GetProductoModel>> getProductos();
+  Future<SaveOrderModel> saveOrder(Pedido params);
 }
 
 class HomeDataSourceImpl implements HomeDataSource {
@@ -18,8 +21,8 @@ class HomeDataSourceImpl implements HomeDataSource {
   HomeDataSourceImpl({required this.client, required this.sharedPreferences});
   @override
   Future<GetVendedorModel> getVendedor() async {
-    final user = sharedPreferences.getString("username");
     final db = await client.database;
+    final user = sharedPreferences.getString("username");
     try {
       final response = await db
           .rawQuery("SELECT * FROM Vendedor where codigo LIKE '%$user%'");
@@ -58,6 +61,21 @@ class HomeDataSourceImpl implements HomeDataSource {
         listProductos.add(producto);
       }
       return listProductos;
+    } catch (error) {
+      throw Exception("$error");
+    }
+  }
+
+  @override
+  Future<SaveOrderModel> saveOrder(Pedido params) async {
+    final db = await client.database;
+    try {
+      final response = await db.rawQuery(
+          """INSERT INTO 'Pedidos' ('usuario','cliente','fechaPedido','listaProductos')
+      VALUES('${params.usuario}','${params.cliente}','${params.fechaPedido}','${params.toJson()["listaProductos"]}');
+      """);
+
+      return SaveOrderModel.fromJson({"result": response.isEmpty});
     } catch (error) {
       throw Exception("$error");
     }

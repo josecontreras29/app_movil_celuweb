@@ -17,6 +17,7 @@ import 'features/auth/infraestructure/repositories/registration_impl.dart';
 import 'features/auth/ui/bloc/auth_bloc.dart';
 import 'features/home/domain/repositories/home_repository.dart';
 import 'features/home/domain/usecases/get_vendedor_usecase.dart';
+import 'features/home/domain/usecases/save_order_usecase.dart';
 import 'features/home/infraestructure/datasource/home_datasource.dart';
 import 'features/home/infraestructure/repositories/home_impl.dart';
 import 'features/home/ui/bloc/bloc.dart';
@@ -61,7 +62,11 @@ Future<void> initHomeDependencies() async {
   sl.registerSingleton<GetVendedor>(GetVendedor(repository: sl()));
   sl.registerSingleton<GetClientes>(GetClientes(repository: sl()));
   sl.registerSingleton<GetProductos>(GetProductos(repository: sl()));
+  sl.registerSingleton<SaveOrder>(SaveOrder(repository: sl()));
   // Blocs
-  sl.registerSingleton<HomeBloc>(
-      HomeBloc(getVendedor: sl(), getClientes: sl(), getProductos: sl()));
+  sl.registerSingleton<HomeBloc>(HomeBloc(
+      getVendedor: sl(),
+      getClientes: sl(),
+      getProductos: sl(),
+      saveOrder: sl()));
 }

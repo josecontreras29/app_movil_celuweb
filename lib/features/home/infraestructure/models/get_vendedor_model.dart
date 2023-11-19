@@ -16,16 +16,16 @@ class GetVendedorModel extends Vendedor {
 
   factory GetVendedorModel.fromJson(Map<String, dynamic> json) {
     return GetVendedorModel(
-        bodega: json["bodega"],
+        bodega: json["bodega"] ?? "NO DATA",
         codigo: json["codigo"],
-        nombre: json["nombre"],
-        fechaLabores: json["fechaLabores"],
-        fechaConsecutivo: json["fechaConsecutivo"],
-        consecutivo: json["consecutivo"],
-        empresa: json["empresa"],
-        distrito: json["distrito"],
-        portafolio: json["portafolio"],
-        moneda: json["moneda"],
-        tipo: json["tipo"]);
+        nombre: json["nombre"] ?? "NO DATA",
+        fechaLabores: json["fechaLabores"] ?? "NO DATA",
+        fechaConsecutivo: json["fechaConsecutivo"] ?? "NO DATA",
+        consecutivo: json["consecutivo"] ?? 0,
+        empresa: json["empresa"] ?? "NO DATA",
+        distrito: json["distrito"] ?? "NO DATA",
+        portafolio: json["portafolio"] ?? "NO DATA",
+        moneda: json["moneda"] ?? "NO DATA",
+        tipo: json["tipo"] ?? 0);
   }
 }

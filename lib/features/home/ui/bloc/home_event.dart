@@ -1,6 +1,10 @@
+import '../../domain/entities/pedido.dart';
+
 class HomeEvent {
   HomeEvent();
 }
+
+class InitEvent extends HomeEvent {}
 
 class GetInitialDataEvent extends HomeEvent {}
 
@@ -9,4 +13,7 @@ class GetListProductsByClient extends HomeEvent {
   GetListProductsByClient({required this.client});
 }
 
-class SaveOrder extends HomeEvent {}
+class SaveOrderEvent extends HomeEvent {
+  final Pedido pedido;
+  SaveOrderEvent({required this.pedido});
+}
