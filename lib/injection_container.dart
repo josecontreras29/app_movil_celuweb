@@ -6,9 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'features/auth/domain/repositories/login_repository.dart';
 import 'features/auth/domain/repositories/registration_repository.dart';
-import 'features/auth/domain/usecases/validate_user.dart';
-import 'features/auth/domain/usecases/registration_user.dart';
-import 'features/auth/domain/usecases/verify_user.dart';
+import 'features/auth/domain/usecases/validate_user_usecase.dart';
+import 'features/auth/domain/usecases/registration_user_usecase.dart';
+import 'features/auth/domain/usecases/verify_user_usecase.dart';
 import 'features/auth/infraestructure/datasource/login_datasource.dart';
 import 'features/auth/infraestructure/datasource/registration_datasource.dart';
 

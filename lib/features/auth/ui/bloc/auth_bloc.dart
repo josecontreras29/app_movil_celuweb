@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../-core/params/login_params.dart';
 
 import '../../../../-core/params/registration_params.dart';
-import '../../domain/usecases/validate_user.dart';
-import '../../domain/usecases/registration_user.dart';
+import '../../domain/usecases/validate_user_usecase.dart';
+import '../../domain/usecases/registration_user_usecase.dart';
 
-import '../../domain/usecases/verify_user.dart';
+import '../../domain/usecases/verify_user_usecase.dart';
 import 'bloc.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
