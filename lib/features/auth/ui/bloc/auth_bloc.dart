@@ -18,7 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _registrationUser = registrationUser,
         _verifyuser = verifyUser,
         super(LoginInitial()) {
-    on<InitialEventAuth>(initialEvent);
+    on<InitialEventAuth>(initialEventAuth);
     on<RegisterEvent>(registerEvent);
     on<ForgottenPaswordEvent>(forgottenPaswordEvent);
     on<SignIn>(signIn);
@@ -28,7 +28,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final RegistrationUser _registrationUser;
   final VerifyUser _verifyuser;
 
-  void initialEvent(InitialEventAuth event, Emitter<AuthState> emit) {}
+  void initialEventAuth(InitialEventAuth event, Emitter<AuthState> emit) {
+    emit(LoginInitial());
+  }
 
   void registerEvent(RegisterEvent event, Emitter<AuthState> emit) {
     emit(RegisterInitial());

@@ -124,7 +124,10 @@ class _RegistrationViewState extends State<RegistrationView> {
                             color: Colors.blue[700]!,
                             fontWeight: FontWeight.bold),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => authBloc.add(InitialEventAuth())))
+                          ..onTap = () {
+                            print("asddas");
+                            authBloc.add(InitialEventAuth());
+                          }))
               ],
             ),
           )
