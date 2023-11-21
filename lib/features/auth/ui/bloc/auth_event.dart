@@ -4,20 +4,19 @@ class AuthEvent {
   AuthEvent();
 }
 
-class InitialEventAuth extends AuthEvent {}
+class AuthInitialEvent extends AuthEvent {}
 
-class SignIn extends AuthEvent {
+class AuthSignInEvent extends AuthEvent {
   final String user;
   final String password;
-  SignIn({required this.user, required this.password});
+  AuthSignInEvent({required this.user, required this.password});
 }
 
-class RegisterEvent extends AuthEvent {}
+class AuthRegisterEvent extends AuthEvent {}
 
-class SignUp extends AuthEvent {
+class AuthSignUpEvent extends AuthEvent {
   final RegistrationDataForm registrationData;
-  SignUp({required this.registrationData});
+  AuthSignUpEvent({required this.registrationData});
 }
 
-class ForgottenPaswordEvent extends AuthEvent {}
-
+class AuthForgottenPaswordEvent extends AuthEvent {}

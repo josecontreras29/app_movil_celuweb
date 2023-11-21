@@ -1,7 +1,6 @@
-import 'package:app_movil/features/auth/domain/entities/verify_user_registered.dart';
-
 import '../../../../-core/params/registration_params.dart';
 import '../../domain/entities/registration_status.dart';
+import '../../domain/entities/verify_user_registered.dart';
 import '../../domain/repositories/registration_repository.dart';
 import '../datasource/registration_datasource.dart';
 

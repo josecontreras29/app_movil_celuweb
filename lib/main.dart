@@ -1,15 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'features/auth/ui/bloc/bloc.dart';
-import 'features/home/ui/bloc/bloc.dart';
-
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-
-import '-config/themes/app_themes.dart';
-import 'features/auth/ui/views/authentication_view.dart';
 import 'injection_container.dart';
+
+import 'features/auth/ui/bloc/auth_bloc_imports.dart';
+import 'features/auth/ui/views/authentication_view.dart';
+import 'features/home/ui/bloc/home_bloc_imports.dart';
+import '-config/themes/app_themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,8 +31,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<AuthBloc>(
-              create: (context) => sl()..add(InitialEventAuth())),
-          BlocProvider<HomeBloc>(create: (context) => sl()..add(InitEvent()))
+              create: (context) => sl()..add(AuthInitialEvent())),
+          BlocProvider<HomeBloc>(
+              create: (context) => sl()..add(HomeInitialEvent()))
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

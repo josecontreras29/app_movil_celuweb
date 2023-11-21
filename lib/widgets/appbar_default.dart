@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../features/auth/ui/views/authentication_view.dart';
 import '../injection_container.dart';
 
 class AppBarDefault extends StatelessWidget {
-  const AppBarDefault({super.key, required this.username});
-
-  final String username;
+  const AppBarDefault({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,9 @@ class AppBarDefault extends StatelessWidget {
                     children: [
                       const Icon(Icons.person),
                       const SizedBox(width: 10),
-                      Text(username),
+                      Text(sl<SharedPreferences>()
+                          .getString("username")
+                          .toString()),
                     ],
                   ),
                 )))

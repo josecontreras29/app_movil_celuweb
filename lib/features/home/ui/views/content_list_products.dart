@@ -1,31 +1,31 @@
-import 'package:app_movil/-core/params/home_params.dart';
-import 'package:app_movil/widgets/ok_button_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../-config/themes/title_themes.dart';
+import '../../../../-core/params/home_params.dart';
 import '../../../../injection_container.dart';
+import '../../../../widgets/ok_button_dialog.dart';
 import '../../domain/entities/pedido.dart';
-import '../bloc/bloc.dart';
+import '../bloc/home_bloc_imports.dart';
 import '../reusable_widgets/cell_table_products.dart';
 import '../reusable_widgets/checkbutton_table_products.dart';
 import '../reusable_widgets/title_table_products.dart';
 
 class ContentListProducts extends StatelessWidget {
-  ContentListProducts({super.key});
-  final ScrollController controller = ScrollController();
-  final List<ProductInfoForOrder> listValuesSelected = [];
+  const ContentListProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController controller = ScrollController();
+    final List<ProductInfoForOrder> listValuesSelected = [];
     return BlocBuilder<HomeBloc, HomeState>(
       buildWhen: (previous, current) =>
-          previous is HomeInitial || previous is HomeLoadingProducts,
+          previous is HomeInitialState || previous is HomeLoadingProductsState,
       builder: (context, state) {
-        if (state is HomeLoadingProducts) {
+        if (state is HomeLoadingProductsState) {
           return const CircularProgressIndicator();
-        } else if (state is HomeLoadedProducts) {
+        } else if (state is HomeLoadedProductsState) {
           return Container(
             margin: const EdgeInsets.symmetric(vertical: 20),
             child: Column(
@@ -265,7 +265,7 @@ class ContentListProducts extends StatelessWidget {
                               context, "Please select at least one product");
                         } else {
                           final prefs = sl<SharedPreferences>();
-                          context.read<HomeBloc>().add(SaveOrderEvent(
+                          context.read<HomeBloc>().add(HomeSaveOrderEvent(
                               pedido: Pedido(
                                   usuario: prefs.getString("username")!,
                                   fechaPedido:

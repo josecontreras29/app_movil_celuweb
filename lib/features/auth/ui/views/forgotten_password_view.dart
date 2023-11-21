@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../widgets/ok_button_dialog.dart';
-import '../bloc/bloc.dart';
+import '../bloc/auth_bloc_imports.dart';
 import '../reusable_widgets/background_login.dart';
 
 class ForgottenPasswordView extends StatefulWidget {
@@ -54,7 +54,7 @@ class _ForgottenPasswordViewState extends State<ForgottenPasswordView> {
                   margin: const EdgeInsets.only(top: 20),
                   child: ElevatedButton(
                     onPressed: () async {
-                      context.read<AuthBloc>().add(InitialEventAuth());
+                      context.read<AuthBloc>().add(AuthInitialEvent());
                       await okButton(context, "Email sent");
                     },
                     child: const Row(
@@ -84,8 +84,9 @@ class _ForgottenPasswordViewState extends State<ForgottenPasswordView> {
                               color: Colors.blue[700]!,
                               fontWeight: FontWeight.bold),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () =>
-                                context.read<AuthBloc>().add(InitialEventAuth())),
+                            ..onTap = () => context
+                                .read<AuthBloc>()
+                                .add(AuthInitialEvent())),
                     )
                   ],
                 ),

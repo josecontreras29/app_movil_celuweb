@@ -1,4 +1,3 @@
-
 import '../../domain/entities/verify_user_registered.dart';
 
 class VerifyUserModel extends VerifyUserRegisteredStatus {

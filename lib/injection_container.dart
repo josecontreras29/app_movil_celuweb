@@ -1,9 +1,7 @@
-import 'package:app_movil/-core/datasources/sqlite.dart';
-import 'package:app_movil/features/home/domain/usecases/get_clientes_usecase.dart';
-import 'package:app_movil/features/home/domain/usecases/get_productos_usecase.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '-core/datasources/sqlite.dart';
 import 'features/auth/domain/repositories/login_repository.dart';
 import 'features/auth/domain/repositories/registration_repository.dart';
 import 'features/auth/domain/usecases/validate_user_usecase.dart';
@@ -11,16 +9,17 @@ import 'features/auth/domain/usecases/registration_user_usecase.dart';
 import 'features/auth/domain/usecases/verify_user_usecase.dart';
 import 'features/auth/infraestructure/datasource/login_datasource.dart';
 import 'features/auth/infraestructure/datasource/registration_datasource.dart';
-
 import 'features/auth/infraestructure/repositories/login_impl.dart';
 import 'features/auth/infraestructure/repositories/registration_impl.dart';
 import 'features/auth/ui/bloc/auth_bloc.dart';
 import 'features/home/domain/repositories/home_repository.dart';
+import 'features/home/domain/usecases/get_clientes_usecase.dart';
+import 'features/home/domain/usecases/get_productos_usecase.dart';
 import 'features/home/domain/usecases/get_vendedor_usecase.dart';
 import 'features/home/domain/usecases/save_order_usecase.dart';
 import 'features/home/infraestructure/datasource/home_datasource.dart';
 import 'features/home/infraestructure/repositories/home_impl.dart';
-import 'features/home/ui/bloc/bloc.dart';
+import 'features/home/ui/bloc/home_bloc_imports.dart';
 
 final sl = GetIt.instance;
 

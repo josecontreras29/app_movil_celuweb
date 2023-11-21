@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../-core/params/registration_params.dart';
-import '../bloc/bloc.dart';
+import '../bloc/auth_bloc_imports.dart';
 import '../reusable_widgets/background_login.dart';
 
 class RegistrationView extends StatefulWidget {
@@ -93,7 +92,7 @@ class _RegistrationViewState extends State<RegistrationView> {
             child: ElevatedButton(
               onPressed: () async {
                 if (_formField.currentState!.validate()) {
-                  authBloc.add(SignUp(
+                  authBloc.add(AuthSignUpEvent(
                       registrationData: RegistrationDataForm(
                           usuario: controllerUsuario.text,
                           password: controllerPassword.text,
@@ -124,10 +123,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                             color: Colors.blue[700]!,
                             fontWeight: FontWeight.bold),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            print("asddas");
-                            authBloc.add(InitialEventAuth());
-                          }))
+                          ..onTap = () => authBloc.add(AuthInitialEvent())))
               ],
             ),
           )

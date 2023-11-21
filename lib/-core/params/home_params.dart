@@ -1,5 +1,3 @@
-
-
 class ProductInfoForOrder {
   final String codigo;
   final String nombre;
@@ -17,8 +15,5 @@ class ProductInfoForOrder {
 
 class SaveOrderResult {
   final bool result;
-
   SaveOrderResult({required this.result});
-
- 
 }

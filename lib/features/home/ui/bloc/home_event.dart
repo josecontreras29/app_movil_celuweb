@@ -4,16 +4,16 @@ class HomeEvent {
   HomeEvent();
 }
 
-class InitEvent extends HomeEvent {}
+class HomeInitialEvent extends HomeEvent {}
 
-class GetInitialDataEvent extends HomeEvent {}
+class HomeGetInitialDataEvent extends HomeEvent {}
 
-class GetListProductsByClient extends HomeEvent {
+class HomeGetListProductsByClient extends HomeEvent {
   final String client;
-  GetListProductsByClient({required this.client});
+  HomeGetListProductsByClient({required this.client});
 }
 
-class SaveOrderEvent extends HomeEvent {
+class HomeSaveOrderEvent extends HomeEvent {
   final Pedido pedido;
-  SaveOrderEvent({required this.pedido});
+  HomeSaveOrderEvent({required this.pedido});
 }

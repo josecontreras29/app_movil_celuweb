@@ -1,5 +1,3 @@
-import 'package:app_movil/features/home/domain/entities/cliente.dart';
-import 'package:app_movil/widgets/ok_button_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,8 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../-config/themes/title_themes.dart';
 import '../../../../injection_container.dart';
 import '../../../../widgets/appbar_default.dart';
+import '../../../../widgets/ok_button_dialog.dart';
+import '../../domain/entities/cliente.dart';
 import '../../domain/entities/vendedor.dart';
-import '../bloc/bloc.dart';
+import '../bloc/home_bloc_imports.dart';
 import '../reusable_widgets/background_home.dart';
 import '../reusable_widgets/dropdown_clients.dart';
 import '../reusable_widgets/vendedor_item_default.dart';
@@ -20,29 +20,27 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final prefs = sl<SharedPreferences>();
-
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: AppBarDefault(username: prefs.getString("username")!)),
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(50), child: AppBarDefault()),
       body: SingleChildScrollView(
         child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: BlocConsumer<HomeBloc, HomeState>(
                 listener: (context, state) async {
-                  if (state is OrderSaved) {
+                  if (state is HomeOrderSavedState) {
                     await okButton(context, "Order saved succesfully");
                   }
                 },
                 buildWhen: (previous, current) =>
-                    current is HomeInitial || current is HomeLoading,
+                    current is HomeInitialState || current is HomeLoadingState,
                 builder: (context, state) {
-                  if (state is HomeInitial) {
+                  if (state is HomeInitialState) {
                     return HomeView(
                         dataVendedor: state.vendedor,
                         listClients: state.listClientes);
-                  } else if (state is HomeLoading) {
+                  } else if (state is HomeLoadingState) {
                     return const Center(
                         child: CircularProgressIndicator(
                             color: Colors.black, strokeWidth: 6));
@@ -138,12 +136,12 @@ class HomeView extends StatelessWidget {
                   DropDownClients(
                       listClients: listClients,
                       action: (client) => homeBloc
-                          .add(GetListProductsByClient(client: client))),
+                          .add(HomeGetListProductsByClient(client: client))),
                 ],
               ),
             ],
           ),
-          ContentListProducts()
+          const ContentListProducts()
         ],
       ),
     );

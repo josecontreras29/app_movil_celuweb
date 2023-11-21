@@ -1,8 +1,7 @@
-import 'package:app_movil/features/home/domain/entities/cliente.dart';
-import 'package:app_movil/features/home/domain/entities/pedido.dart';
-import 'package:app_movil/features/home/domain/entities/producto.dart';
-
 import '../../../../-core/params/home_params.dart';
+import '../../domain/entities/cliente.dart';
+import '../../domain/entities/pedido.dart';
+import '../../domain/entities/producto.dart';
 import '../../domain/entities/vendedor.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../datasource/home_datasource.dart';

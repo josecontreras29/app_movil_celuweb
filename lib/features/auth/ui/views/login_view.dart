@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../-config/constants/images.dart';
-import '../bloc/bloc.dart';
+import '../bloc/auth_bloc_imports.dart';
 import '../reusable_widgets/background_login.dart';
 
 class LoginView extends StatefulWidget {
@@ -24,7 +24,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   void initState() {
     authBloc = context.read<AuthBloc>();
-    authBloc.add(InitialEventAuth());
+    authBloc.add(AuthInitialEvent());
     super.initState();
   }
 
@@ -120,7 +120,7 @@ class _LoginViewState extends State<LoginView> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formField.currentState!.validate()) {
-                        authBloc.add(SignIn(
+                        authBloc.add(AuthSignInEvent(
                             user: controllerUser.text,
                             password: controllerpw.text));
                       }
@@ -148,7 +148,7 @@ class _LoginViewState extends State<LoginView> {
                   ElevatedButton(
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.grey),
-                    onPressed: () => authBloc.add(RegisterEvent()),
+                    onPressed: () => authBloc.add(AuthRegisterEvent()),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -174,7 +174,7 @@ class _LoginViewState extends State<LoginView> {
                             fontWeight: FontWeight.bold),
                         recognizer: TapGestureRecognizer()
                           ..onTap =
-                              () => authBloc.add(ForgottenPaswordEvent()))))
+                              () => authBloc.add(AuthForgottenPaswordEvent()))))
           ])),
     );
   }

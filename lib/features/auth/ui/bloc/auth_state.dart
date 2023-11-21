@@ -2,23 +2,23 @@ class AuthState {
   const AuthState();
 }
 
-class LoginInitial extends AuthState {}
+class AuthLoginInitialState extends AuthState {}
 
-class Loading extends AuthState {}
+class AuthLoadingState extends AuthState {}
 
-class AuthDenied extends AuthState {}
+class AuthDeniedState extends AuthState {}
 
-class AuthPassed extends AuthState {
+class AuthPassedState extends AuthState {
   String username;
-  AuthPassed({required this.username});
+  AuthPassedState({required this.username});
 }
 
-class RegisterInitial extends AuthState {}
+class AuthRegisterInitialState extends AuthState {}
 
-class UserRegistered extends AuthState {}
+class AuthUserRegisteredState extends AuthState {}
 
-class UserNotRegistered extends AuthState {}
+class AuthUserNotRegisteredState extends AuthState {}
 
-class UserAlreadyRegistered extends AuthState {}
+class AuthUserAlreadyRegisteredState extends AuthState {}
 
-class ForgottenPasswordInitial extends AuthState {}
+class AuthForgottenPasswordInitialState extends AuthState {}
